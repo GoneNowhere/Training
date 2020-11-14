@@ -33,7 +33,7 @@ function Sorting(symbols){
                                     : resultNum += `${symbol}`.charCodeAt(0)
                     :  ( symbol.indexOf(".") == false)
                                     ? resultNum += "." //Fix sort float number
-                                    : resultNum += `${symbol}`.charCodeAt(0)
+                                    : resultNum += `${symbol}`.charCodeAt(0) + symbol // Fix sort numbers where unicode sum equal (Example : 20,11 => 2(50)0(48) = 98 , 1(49)1(49) = 98 )
                     )
   return resultNum;
   }
