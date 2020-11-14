@@ -10,13 +10,13 @@ function Sorting(symbols){
   function Training(array){
    let unicodeArray = [];
     array.map(  symbol =>  (symbol.length > 1)
-                        ? unicodeArray.push( { original: symbol , unicode : SplitSumbol(symbol) }  )
+                        ? unicodeArray.push( { original: symbol , unicode : SplitSymbol(symbol) }  )
                         : unicodeArray.push( { original: symbol , unicode : `${symbol}`.charCodeAt(0) } )
   );
   return Sort(unicodeArray);
   }
 
-  function SplitSumbol(symbol){
+  function SplitSymbol(symbol){
    let ressultSplit = [];
     for(i=0;i<`${symbol}`.length;i++){
       ressultSplit.push( symbol.slice(i,i+1) );
