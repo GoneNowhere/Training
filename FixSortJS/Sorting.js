@@ -17,24 +17,37 @@ function Sorting(symbols){
   }
 
   function SplitSymbol(symbol){
-   let ressultSplit = [];
+   let resultSplit = [];
     for(i=0;i<`${symbol}`.length;i++){
-      ressultSplit.push( symbol.slice(i,i+1) );
+      resultSplit.push( symbol.slice(i,i+1) );
     }
-  return GettingSumSymbolsUnicode(ressultSplit);
+  return GettingSumSymbolsUnicode(resultSplit);
   }
 
-  function GettingSumSymbolsUnicode(ressultSplit){
+  function GettingSumSymbolsUnicode(resultSplit){
    let resultNum = 0;
 
-  ressultSplit.map( (symbol,index) => (symbol.match(/[A-z]/g))
-                    ?  ( symbol.match(/[A-Z]/g) ) //fix sort words where unicode sum equal. Example : Kol, kOl return equal unicode sum(294)!
-                                    ? resultNum += `${symbol}`.charCodeAt(0) + index
-                                    : resultNum += `${symbol}`.charCodeAt(0)
-                    :  ( symbol.indexOf(".") == false)
-                                    ? resultNum += "." //Fix sort float number
-                                    : resultNum += `${symbol}`.charCodeAt(0) + symbol // Fix sort numbers where unicode sum equal (Example : 20,11 => 2(50)0(48) = 98 , 1(49)1(49) = 98 )
+
+  if( resultSplit[0] === "0" && resultSplit.length > 1 && resultSplit.indexOf(".") == -1){ //Sort numbers where first char equal 0(zero)
+
+    resultSplit.map( (symbol,index) => (symbol[index] === "0")
+                                    ? resultNum += `${symbol}`.charCodeAt(0)
+                                    : resultNum += ( `${symbol }`.charCodeAt(0) + index ) / 1000 //1000 becouse rounding bypass number(if use 100 => js round-up number)
+// input 010 => resultNum += 48(look step up) => resultNum += 49 / 1000 = 0.049  (1 have unicode - 49) => resultNUm += 48 / 1000 = 0.048 => resultNum = 48.097
                     )
+  }else{
+
+    resultSplit.map( (symbol,index) => (symbol.match(/[A-z]/g))
+                      ?  ( symbol.match(/[A-Z]/g) ) //fix sort words where unicode sum equal. Example : Kol, kOl return equal unicode sum(294)!
+                                      ? resultNum += `${symbol}`.charCodeAt(0) + index
+                                      : resultNum += `${symbol}`.charCodeAt(0)
+                      : ( symbol.indexOf(".") == false)
+                                      ? resultNum += "." //Fix sort float number
+                                      : resultNum += `${symbol}`.charCodeAt(0) + symbol // Fix sort numbers where unicode sum equal (Example : 20,11 => 2(50)0(48) = 98 , 1(49)1(49) = 98 )
+                      )
+
+  }
+
   return resultNum;
   }
 

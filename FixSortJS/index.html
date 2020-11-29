@@ -86,8 +86,7 @@
 
       document.querySelector('#btn').addEventListener('click',  function(){
         let symbol = document.querySelector('#input').value;
-
-            (symbol == "")
+                (symbol == "")
                     ? ShowError()
                     : document.querySelector('.answer').innerHTML =  `[${Sorting(symbol)}]`
           });
