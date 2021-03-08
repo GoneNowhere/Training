@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="style.css" rel="stylesheet"/>
+    <title>Number Translator</title>
+</head>
+<body>
+    <div class="content">
+
+        <div class="warning">
+            <h1>It's algorithm show works result 32 bits (4 byte) and 64 bits (8 byte) systems</h1>
+            <table class="infoAboutSystems">
+
+                <tbody>
+            
+                    <tr>
+                        <th>System</th>
+                        <th>Max positive number integer</th>
+                        <th>Max negative number integer</th>
+                        <th>Max fractional</th>
+                    </tr>
+
+                    <tr>
+                        <td>32 bits (4 byte)</td>
+                        <td>2147483647</td>
+                        <td>-2147483648</td>
+                        <td>1048575</td>
+                    </tr>
+
+                    <tr>
+                        <td>64 bits (8 byte)</td>
+                        <td>9223372036854775807</td>
+                        <td>-9223372036854775808</td>
+                        <td>4503599627370495</td>
+                    </tr>
+
+                </tbody>        
+
+            </table>
+        </div>
+
+        <div class="MainContent">
+
+            <label>
+                <select class="SystemBits" name="SystemBits">
+                        <option name="32Bits" value="0">32 Bits (4 Binary)</option>
+                        <option name="64Bits" value="1">64 Bits (8 Binary)</option>
+                </select>
+            </label>
+
+            <label>
+                <select class="Convertation" name="Convertation">
+                    <option name="DecimalToBinary" value="0">Decimal to binary</option>
+                    <option name="BinaryToDecimal" value="1">Binary to decimal</option>
+                </select>
+            </label>
+
+            <label>
+                <select class="IntegerOrFraction" name="IntegerOrFraction">
+                        <option name="Integer" value="0">Integer</option>
+                        <option name="Fraction" value="1">Fractional</option>
+                </select>
+            </label>
+
+            <div class="Calc">
+                <input class="number" type="number" placeholder="Type decimal number"/>
+                <input class="translation" type="button" value="Translation"/>
+            </div>
+
+
+        </div>
+
+        <div class="output">
+            <p class="result"></p>
+        </div>
+
+    </div>
+
+
+    <script>
+        let SelectSystem       = document.querySelector(".SystemBits"),
+            //Get 0 - 32 bits system. Get 1 - 64 bits system
+            SelectedConvertor  = document.querySelector(".Convertation"),
+            //Get 0 - converting decimal to binary . Get 1 - converting binary to decimal
+            SelectTypeNumber   = document.querySelector(".IntegerOrFraction"),
+            //Get 0 - number integer. Get 1 - fractional 
+            input              = document.querySelector(".number"),
+            number             = {};
+
+
+         document.querySelector(".translation").addEventListener("click", ()=>{
+
+        (+SelectSystem.value)
+            ? (number._BitsSystem_= 64, number._fraction_ = 52, number._maxCommaInteger_= 1023, number._maxIntegerSystem_ = 18446744073709551616n)//9223372036854775808n
+            : (number._BitsSystem_= 32, number._fraction_ = 23, number._maxCommaInteger_= 127, number._maxIntegerSystem_ = 4294967296n);//2147483648           
+            
+            document.querySelector(".result").innerHTML = switchFunctionCall();
+        })
+
+        function switchFunctionCall(){
+
+            return (+SelectedConvertor.value) 
+                       ? BinaryToDecimal(number,input.value,+SelectTypeNumber.value)
+                       : DecimalToBinary(number,input.value,+SelectTypeNumber.value);
+
+        }
+
+
+    </script>
+    <script src="DecimalToBinary.js"></script>
+    <script src="BinaryToDecimal.js"></script>
+
+</body>
+</html>

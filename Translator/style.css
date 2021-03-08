@@ -1,0 +1,52 @@
+.content{
+    text-align: center;
+    display: block;
+    margin: 10% auto;
+    height: 160px;
+}
+
+table{
+    margin: auto;
+    font-size: 20px;
+}
+
+table, th ,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 5px 10px 5px 10px;
+}
+
+.Convertation, .IntegerOrFraction,.SystemBits{
+    height: 35px;
+    width: 170px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 15px auto 15px auto;
+}
+
+.MainContent > label{
+    letter-spacing: 15px;
+    height: 20px;
+}
+
+.number {
+    height: 35px;
+    width: 750px;
+    font-size: 20px;
+    padding: 6px 5px 5px 10px;
+}
+
+.translation {
+    height: 50px;
+    width: 150px;
+    cursor: pointer;
+    font-size: 21px;
+}
+
+
+.result{
+    font-size: 30px;
+}
