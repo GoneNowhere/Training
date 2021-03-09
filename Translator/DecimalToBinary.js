@@ -34,7 +34,7 @@ function GetBinary(integer){
 
          while(integer){       
 
-                if(integer & 1){  
+                if(integer & 1){//analoge => number % 2 == 1
 
                     integer   -= 1;                                                        
                     Binary    += "1";
@@ -89,7 +89,7 @@ return Comma(number);
 function Comma(number){
 
     number.comma = (+number.original < 1) 
-                    ? GetBinary( number._maxCommaInteger_ + Math.floor( (Math.log2(number.original) ) ) )
+                    ? GetBinary( number._maxCommaInteger_ + Math.floor( (Math.log2(number.original) ) ) )//Math.ceil( -2.83) => -3 
                     : GetBinary( number._maxCommaInteger_ + (number.integer.length - 1));
 
                     
