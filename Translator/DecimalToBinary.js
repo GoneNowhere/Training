@@ -34,7 +34,7 @@ function GetBinary(integer){
 
          while(integer){       
 
-                if(integer & 1){//analoge => number % 2 == 1
+                if(integer & 1){//analogue => number % 2 == 1
 
                     integer   -= 1;                                                        
                     Binary    += "1";
