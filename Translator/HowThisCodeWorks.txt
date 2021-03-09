@@ -13,7 +13,7 @@
                                              0  |------|  
                                                     0  | 1
                                                     
-  result = 0011001 (6 bit)
+  result = 0011001 (6 bit) [next last bit delete]
   
   2) Getting free bits for fraction
   
