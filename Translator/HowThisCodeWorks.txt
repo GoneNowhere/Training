@@ -18,7 +18,8 @@
   2) Getting free bits for fraction
   
       24 - 6 = 18 
-(24 - amount bits for fraction in system [32 or 64], 6 - amount bit for a number integer)			      		 	[if bit system = 64, 24 need replace on 53]
+(24 - amount bits for fraction in system [32 or 64], 6 - amount bit for a number integer)			      		 	
+	[if bit system = 64, 24 need replace on 53]
 
   3) Doing iterations for getting fractional (if number < 0 , write 0 ,other case - 1)
   
@@ -116,7 +117,8 @@
          0   |-------| 31 - 1 | 
                  0   |--------| 15 - 1| 
                          1    |-------|  7 - 1 | 
-                                  1   |--------| 3 - 1 |    					 		                                  1    |-------|  
+                                  1   |--------| 3 - 1 |    					 		                                 
+				  	  1    |-------|  
                                                    1   |  1
                                                    
       result = 0011111 (but result < 8 bits [1 byte]. Need add last 8 bit , where he = 0)
@@ -149,7 +151,7 @@
      [if bit system = 64, 32 need replace on 64]
      
   3) Combine all results in one binary number
-     00000000000000000000000101000111             1)Stage 1  2)Stage2							 
+     00000000000000000000000101000111             1)Stage 1  2)Stage 2							 
      |_____________________||_______| 
               1                 2  
 
