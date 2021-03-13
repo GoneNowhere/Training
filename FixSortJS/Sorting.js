@@ -12,8 +12,7 @@ function Sorting(symbols){
       array.map(  symbol =>  (symbol.length > 1)
                         ? unicodeArray.push( { original: symbol , unicode : SplitSymbol(symbol) } )
                         : unicodeArray.push( { original: symbol , unicode : CheckSymbolAndChangeUnicodeNumber(symbol) } ) 
-               );
-     console.log(unicodeArray)                   
+               );                 
   return Sort(unicodeArray);
   }
 
