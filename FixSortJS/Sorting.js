@@ -10,7 +10,7 @@ function Sorting(symbols){
   function Training(array){
    let unicodeArray = [];
       array.map(  symbol =>  unicodeArray.push( { original: symbol , unicode : SplitSymbol(symbol) } ) );   
-               console.log(unicodeArray)              
+             
   return Sort(unicodeArray);
   }
 
