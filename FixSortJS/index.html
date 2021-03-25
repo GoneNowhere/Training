@@ -86,7 +86,7 @@
         let symbol = document.querySelector('#input').value;
                 (symbol == "")
                     ? ShowError()
-                    : document.querySelector('.answer').innerHTML =  `[${Sorting(symbol)}]`
+                    : document.querySelector('.answer').innerHTML =  `${Sorting(symbol)}`
           });
 
           function ShowError(){
