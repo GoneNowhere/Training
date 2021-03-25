@@ -13,9 +13,13 @@
         transform: translate(-50%, -50%)
       }
       .valueError{
-        color:white;
+        visibility:hidden;
+        color: hsl(0deg 77% 47%);
         text-align: center;
         font-size: 50px;
+      }
+      .UserInformation > p{
+        margin:0;
       }
       .info{
         text-align:center;
@@ -23,10 +27,6 @@
       .resultOfWork{
         text-align: center;
       }
-      .UserInformation > p{
-        margin:0;
-      }
-
       #input{
         width: 900px;
         padding: 5px;
@@ -90,11 +90,13 @@
           });
 
           function ShowError(){
-              document.querySelector('.valueError').style.color = "hsl(0deg 77% 47%)";
+              setTimeout( ()=>{
+                document.querySelector('.valueError').style.visibility = "visible";
+              } , 0)
 
               setTimeout( ()=>{
-                document.querySelector('.valueError').style.color = "white";
-              } , 5000)
+                document.querySelector('.valueError').style.visibility = "hidden";
+              } , 2000)
           }
 
 
