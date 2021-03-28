@@ -95,8 +95,8 @@
          document.querySelector(".translation").addEventListener("click", ()=>{
 
         (+SelectSystem.value)
-            ? (number._BitsSystem_= 64, number._fraction_ = 52, number._maxCommaInteger_= 1023, number._maxIntegerSystem_ = 18446744073709551616n)//9223372036854775808n
-            : (number._BitsSystem_= 32, number._fraction_ = 23, number._maxCommaInteger_= 127, number._maxIntegerSystem_ = 4294967296n);//2147483648           
+            ? (number._BitsSystem_= 64, number._fraction_ = 52, number._maxCommaInteger_= 1023, number._maxIntegerSystem_ = 18446744073709551616n)//2^64
+            : (number._BitsSystem_= 32, number._fraction_ = 23, number._maxCommaInteger_= 127, number._maxIntegerSystem_ = 4294967296n);//2^32       
             
             document.querySelector(".result").innerHTML = switchFunctionCall();
         })
