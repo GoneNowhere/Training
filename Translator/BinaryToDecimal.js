@@ -1,7 +1,7 @@
-function BinaryToDecimal(number,input,SelectTypeNumber){
+function BinaryToDecimal(number,input,SelectTypeNumber,UseSignBit){
     --number._BitsSystem_;
     
-    return (SelectTypeNumber) ? BinNumberFractionPreparation(number,input) : BinNumberIntegerPreparation(number,input);
+    return (SelectTypeNumber) ? BinNumberFractionPreparation(number,input) : BinNumberIntegerPreparation(number,input,UseSignBit);
 
 }
 
@@ -72,27 +72,29 @@ return number.resultBin;
 }
 
 // LOGIC INTEGER NUMBER
-function BinNumberIntegerPreparation(number,input){
-
+function BinNumberIntegerPreparation(number,input,UseSignBit){
     number.originalBin = input;
-    number.signBin = number.originalBin[0];// get sign ()
-
     number.currentBin = GetBigDecimalIntegerBin( number.originalBin.split("").reverse().join("") );
 
-    if(number.signBin === "1"){
-        number.currentBin = number.currentBin - number._maxIntegerSystem_;
-        //add minus to number
+    if(!UseSignBit){
+        //If number signed
+        number.signBin = number.originalBin[0];// get sign
+
+        if(number.signBin === "1"){
+            number.currentBin = number.currentBin - number._maxIntegerSystem_;
+            //add minus to number
+        }
     }
 
 return number.currentBin;
 }
 
-function GetBigDecimalIntegerBin(Bigint){
+function GetBigDecimalIntegerBin(intBig){
     let Bigdecimal = 0n;
-    
-        for(let i=0;i<Bigint.length;i++){
-            Bigdecimal += BigInt( +Bigint[i] * ( 2 ** i ) );
+
+        for(let i=0;i<intBig.length;i++){
+            Bigdecimal += BigInt( +intBig[i] * ( 2 ** i ) );
         }
-    
+
     return Bigdecimal;
 }

@@ -2,11 +2,9 @@ function DecimalToBinary(number,input,SelectTypeNumber){
     ++number._fraction_; 
 
    return (SelectTypeNumber) ? FractionNumberPreparation(number,input) : IntegerNumberPreparation(number,input);
-
 }
 
 function FractionNumberPreparation(number,input){
-
     number.sign = CheckerSign(input);
 
     if(number.sign === 1){
@@ -22,7 +20,7 @@ function FractionNumberPreparation(number,input){
 }
 
 function CheckerSign(input){
-    return (input[0] === "-") ? 1 : 0;
+    return (input.includes("-") ) ? 1 : 0;
 }
 
 function DeleteMinus(input){
@@ -130,21 +128,20 @@ function IntegerNumberPreparation(number,input){
     number.sign = CheckerSign(input);
 
     if(input[0] === "-"){
-
         input = (number._BitsSystem_ === 32) 
                     ? `${++input}`
-                    : `${BigInt(input) + 1n}`;// BigInt - is type data need used because js don't correct works with number > 2 ** 64 - 1 
-        //console.log(18446744073709551616) => get result 18446744073709551616 , but BigInt() decides this problem
-        //this need operation because, after inversion for number need add 1 byte (look how works byte operator NOT[~] )
-    
+                    : `${BigInt(input) + 1n}`;
+     // BigInt - is type data need used because js don't correct works with number > 2 ** 64 - 1 
+     //console.log(18446744073709551616) => get result 18446744073709552000 , but BigInt() decides this problem
         input = DeleteMinus(input);
     } 
 
-    number.integer = GetBigBinary( BigInt(input) ).split("").reverse().join("");//flip the result for user readability
+    number.integer = GetBigBinary( BigInt(input) ).split("").reverse().join("");//flip the result for user readability;
+
     number.sizeNumber = number._BitsSystem_ - number.integer.length - 1;// 4 byte - it's 32 bits (number 1 - it's sign)
     number.result = FillOtherBits(number);
 
-    return SplitNumber(number);
+   return SplitNumber(number);
 }
 
 function GetBigBinary(BigInteger){
@@ -154,15 +151,20 @@ function GetBigBinary(BigInteger){
 
                 if(BigInteger & 1n){  
 
-                    BigInteger   -= 1n;                                                        
-                    BigBinary    += "1";
+                    BigInteger -= 1n;                                                        
+                    BigBinary  += "1";
 
                  }else{             
                           
-                    BigBinary    += "0";      
+                    BigBinary  += "0";      
 
         }
-                    BigInteger   /= 2n;  
+            BigInteger /= 2n;  
+    }
+
+    if(BigBinary.length > number._BitsSystem_-1){//Imitation Overflow/Underflow
+            BigBinary = BigBinary.slice( 0 , BigBinary.length - (BigBinary.length++ - number._BitsSystem_) );
+            number.warning = "Overflow";
     }
 
 return BigBinary;
@@ -172,12 +174,14 @@ return BigBinary;
 function FillOtherBits(number){
     let result = "";
 
-    if(number.integer.length !== number._BitsSystem_){//if number > max positive(negative) number bit System => delete 65 char
+    if(number.integer.length !== number._BitsSystem_){
+        //if number > max positive(negative) number bit System => delete 65 char
         result += number.sign; // add sign number   
     }
 
     for(let i=0;i<number.sizeNumber;i++){
-           result += 0;// if number positive first bit = 0, other empty bits too = 0. If negative = 1, other empty bits = 1;
+           result += 0;
+        // if number positive first bit = 0, other empty bits too = 0. If negative = 1, other empty bits = 1;
     }
 
     result += number.integer;// add the number itself

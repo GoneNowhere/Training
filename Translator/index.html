@@ -11,31 +11,47 @@
 <body>
     <div class="content">
 
-        <div class="warning">
-            <h1>It's algorithm show works result 32 bits (4 byte) and 64 bits (8 byte) systems</h1>
+        <div class="table">
+            <h1>It's algorithm show works result 32 bits (4 byte) and 64 bits (8 byte) systems from Signed or Unsigned numbers</h1>
             <table class="infoAboutSystems">
 
                 <tbody>
-            
+
                     <tr>
-                        <th>System</th>
+                        <th colspan="2">System</th>
                         <th>Max positive number integer</th>
                         <th>Max negative number integer</th>
                         <th>Max fractional</th>
                     </tr>
 
                     <tr>
-                        <td>32 bits (4 byte)</td>
+                        <td rowspan="2">32 bits (4 byte)</td>
+                        <td>Signed</td>
                         <td>2147483647</td>
                         <td>-2147483648</td>
-                        <td>1048575</td>
+                        <td>2097152.0</td>
                     </tr>
 
                     <tr>
-                        <td>64 bits (8 byte)</td>
+                        <td>Unsigned</td>
+                        <td>4294967295</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="2">64 bits (8 byte)</td>
+                        <td>Signed</td>
                         <td>9223372036854775807</td>
                         <td>-9223372036854775808</td>
-                        <td>4503599627370495</td>
+                        <td>1125899906842624.0</td>
+                    </tr>
+
+                    <tr>
+                        <td>Unsigned</td>
+                        <td>18446744073709551615</td>
+                        <td>-</td>
+                        <td>-</td>
                     </tr>
 
                 </tbody>        
@@ -49,6 +65,13 @@
                 <select class="SystemBits" name="SystemBits">
                         <option name="32Bits" value="0">32 Bits (4 Binary)</option>
                         <option name="64Bits" value="1">64 Bits (8 Binary)</option>
+                </select>
+            </label>
+
+            <label>
+                <select class="Sign" name="Sign">
+                        <option name="Signed" value="0">Signed</option>
+                        <option name="Unsigned" value="1">Unsigned</option>
                 </select>
             </label>
 
@@ -75,15 +98,21 @@
         </div>
 
         <div class="output">
-            <p class="result"></p>
+            <div class="warning">
+                <b class="warningInfo"></b>
+            </div>
+            <div class="result">
+                <p class="outResult"></p>
+            </div>
         </div>
 
     </div>
 
-
     <script>
         let SelectSystem       = document.querySelector(".SystemBits"),
             //Get 0 - 32 bits system. Get 1 - 64 bits system
+            UseSignBit         = document.querySelector(".Sign"),
+            //Get 0 - Signed. Get 1 - Unsigned 
             SelectedConvertor  = document.querySelector(".Convertation"),
             //Get 0 - converting decimal to binary . Get 1 - converting binary to decimal
             SelectTypeNumber   = document.querySelector(".IntegerOrFraction"),
@@ -91,24 +120,44 @@
             input              = document.querySelector(".number"),
             number             = {};
 
+        UseSignBit.addEventListener("click", ()=>{
+            //Disable select integer/fraction
+            (+UseSignBit.value) 
+                    ? (SelectTypeNumber.disabled = true, SelectTypeNumber.value = "0")
+  //Fixed a bug where when you turn off the choice between a fractional and an integer number, you can leave the choice with a fraction
+                    : SelectTypeNumber.disabled = false
 
-         document.querySelector(".translation").addEventListener("click", ()=>{
+         })
 
-        (+SelectSystem.value)
-            ? (number._BitsSystem_= 64, number._fraction_ = 52, number._maxCommaInteger_= 1023, number._maxIntegerSystem_ = 18446744073709551616n)//2^64
-            : (number._BitsSystem_= 32, number._fraction_ = 23, number._maxCommaInteger_= 127, number._maxIntegerSystem_ = 4294967296n);//2^32       
-            
-            document.querySelector(".result").innerHTML = switchFunctionCall();
-        })
+        document.querySelector(".translation").addEventListener("click", () =>{
+         (+UseSignBit.value && input.value.includes(".") || input.value === "-0")
+                ? document.querySelector(".result").innerHTML = "Invalid number entered!!!"//out error
+                : PrepareAndShowResult()
+        })        
+    
+        function PrepareAndShowResult(){
+         (+SelectSystem.value)
+            ? (number._BitsSystem_= 64, number._fraction_ = 52, number._maxCommaInteger_= 1023, number._maxIntegerSystem_ = 18446744073709551616n)
+            : (number._BitsSystem_= 32, number._fraction_ = 23, number._maxCommaInteger_= 127, number._maxIntegerSystem_ = 4294967296n);      
 
-        function switchFunctionCall(){
+            document.querySelector(".outResult").innerHTML = switchFunctionCall();
 
-            return (+SelectedConvertor.value) 
-                       ? BinaryToDecimal(number,input.value,+SelectTypeNumber.value)
-                       : DecimalToBinary(number,input.value,+SelectTypeNumber.value);
+            if(number.warning !== undefined){//Show warning about overflow/underflow 
+                document.querySelector(".warningInfo").innerHTML = `WARNING : occurred ${number.warning}!!!`;
+                setTimeout(()=>{
+                    document.querySelector(".warningInfo").innerHTML = "";
+                    delete number.warning;
+                }, 2000)
+            }
 
         }
 
+        function switchFunctionCall(){
+            return (+SelectedConvertor.value) 
+                       ? BinaryToDecimal(number,input.value,+SelectTypeNumber.value,+UseSignBit.value)
+                       : DecimalToBinary(number,input.value,+SelectTypeNumber.value);
+
+        }
 
     </script>
     <script src="DecimalToBinary.js"></script>

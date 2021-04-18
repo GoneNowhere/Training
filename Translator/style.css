@@ -19,17 +19,17 @@ th, td{
     padding: 5px 10px 5px 10px;
 }
 
-.Convertation, .IntegerOrFraction,.SystemBits{
+.MainContent > label{
+    letter-spacing: 15px;
+    height: 20px;
+}
+
+.SystemBits, .Sign, .Convertation, .IntegerOrFraction{
     height: 35px;
     width: 170px;
     cursor: pointer;
     font-size: 18px;
     margin: 15px auto 15px auto;
-}
-
-.MainContent > label{
-    letter-spacing: 15px;
-    height: 20px;
 }
 
 .number {
@@ -46,7 +46,19 @@ th, td{
     font-size: 21px;
 }
 
+.warning{
+    color: #c9140b;
+    margin: 1% 0 0 -40%;
+}
+
+.warning > b{
+    font-size: 20px;
+}
 
 .result{
-    font-size: 30px;
+    font-size: 35px;
+}
+
+.outResult{
+    margin:15px;
 }
