@@ -273,4 +273,33 @@
    
   3) 4294967169 - 4294967296 = -127
                       |---> 2^32            
-  [if bit system = 64, 4294967296 need replace on 18446744073709551616(2^64)]     
+  [if bit system = 64, 4294967296 need replace on 18446744073709551616(2^64)]  
+
+
+ Overflow/Underflow
+
+ Let's take max signed number 32 bit system - 2**31-1 = 2147483647
+ Binary sees - 01111111 11111111 11111111 11111111
+      
+ But if we are take number  2**31 - 2147483648 sees number have 32 bits , but signed number hold 31 bits . It's real problem , where put last bit(32) ?
+ 
+  
+ 01111111 11111111 11111111 11111111 (counting from right to left) => 2147483647
+ |_this bit now equal 1
+ 11111111 11111111 11111111 11111111 => -2147483648 (if reading signed , but unsigned = 2147483648[only positive number])
+ 
+ How put this number in 32bit system(signed number) 9223372036854775807
+ Binary sees - 1111111 11111111 11111111 11111111 11111111 11111111 11111111 11111111 => 63 bits
+ 
+ Сomputer see it like this
+ 1111111 11111111 11111111 11111111 |11111111 11111111 11111111 11111111| 	
+   				     \_________________________________/
+					         32 bits
+ This 32 bits computer read and translation in decimal number (signed/unsigned, user sameself switch)
+ 11111111 11111111 11111111 11111111 => get number negative -1 
+
+ Overflow/Underflow works only integer number!!!
+ Difference between Overflow and Underflow:
+  Overflow - when a number goes from positive to negative
+  Underflow - When a number goes from negative to positive	
+	                         

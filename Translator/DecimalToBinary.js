@@ -134,7 +134,7 @@ function IntegerNumberPreparation(number,input){
 
     number.integer = GetBigBinary( BigInt(input) ).split("").reverse().join("");//flip the result for user readability
     number.lengthDifference = Math.abs( number.integer.length - number._BitsSystem_  );
-
+   console.log(number.integer)	
     if(number.integer.length > number._BitsSystem_){
      //Imitation Overflow/Underflow
         //if number > variable number._number._BitsSystem_=> remove extra bits
