@@ -127,21 +127,30 @@ return number.result.join("");
 function IntegerNumberPreparation(number,input){
     number.sign = CheckerSign(input);
 
-    if(input[0] === "-"){
-        input = (number._BitsSystem_ === 32) 
-                    ? `${++input}`
-                    : `${BigInt(input) + 1n}`;
-     // BigInt - is type data need used because js don't correct works with number > 2 ** 64 - 1 
-     //console.log(18446744073709551616) => get result 18446744073709552000 , but BigInt() decides this problem
+    if( number.sign ){
         input = DeleteMinus(input);
+        input = `${BigInt(input) - 1n}`;//After inversion the number is less than needed by 1 
     } 
 
-    number.integer = GetBigBinary( BigInt(input) ).split("").reverse().join("");//flip the result for user readability;
+    number.integer = GetBigBinary( BigInt(input) ).split("").reverse().join("");//flip the result for user readability
+    number.lengthDifference = Math.abs( number.integer.length - number._BitsSystem_  );
 
-    number.sizeNumber = number._BitsSystem_ - number.integer.length - 1;// 4 byte - it's 32 bits (number 1 - it's sign)
-    number.result = FillOtherBits(number);
+    if(number.integer.length > number._BitsSystem_){
+     //Imitation Overflow/Underflow
+        //if number > variable number._number._BitsSystem_=> remove extra bits
+        number.result = number.integer.slice( number.lengthDifference , number.integer.length );
+        number.warning = "Overflow";//trigger shows text with caption "overflow"
 
-   return SplitNumber(number);
+        if(number.sign){//only negative number
+            number.result = Inversion( number.result , 0 );
+        }
+
+    }else{//if number <= 2**31(4 byte) or 2**63(8 byte)
+        number.result = FillOtherBits(number);  
+    }
+
+
+  return SplitNumber(number);
 }
 
 function GetBigBinary(BigInteger){
@@ -162,11 +171,6 @@ function GetBigBinary(BigInteger){
             BigInteger /= 2n;  
     }
 
-    if(BigBinary.length > number._BitsSystem_-1){//Imitation Overflow/Underflow
-            BigBinary = BigBinary.slice( 0 , BigBinary.length - (BigBinary.length++ - number._BitsSystem_) );
-            number.warning = "Overflow";
-    }
-
 return BigBinary;
 }
 
@@ -175,24 +179,22 @@ function FillOtherBits(number){
     let result = "";
 
     if(number.integer.length !== number._BitsSystem_){
-        //if number > max positive(negative) number bit System => delete 65 char
         result += number.sign; // add sign number   
     }
 
-    for(let i=0;i<number.sizeNumber;i++){
+    for(let i=0;i<number.lengthDifference-1;i++){//if amount bits < 32
            result += 0;
-        // if number positive first bit = 0, other empty bits too = 0. If negative = 1, other empty bits = 1;
     }
 
     result += number.integer;// add the number itself
-    
+
     return (number.sign) ? Inversion(result) : result;
 }
 
-function Inversion(result){
+function Inversion(result,start=1){
     result = result.split("");
 
-    for(let i =1; i < result.length;i++){
+    for(let i =start; i < result.length;i++){
         result[i] = (result[i] === "0") ? "1" : "0";
     }
     

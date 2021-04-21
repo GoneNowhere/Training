@@ -12,7 +12,7 @@
     <div class="content">
 
         <div class="table">
-            <h1>It's algorithm show works result 32 bits (4 byte) and 64 bits (8 byte) systems from Signed or Unsigned numbers</h1>
+            <h1>It`s algorithm show works result 32 bits (4 byte) and 64 bits (8 byte) systems, with from Signed or Unsigned numbers</h1>
             <table class="infoAboutSystems">
 
                 <tbody>
@@ -130,19 +130,21 @@
          })
 
         document.querySelector(".translation").addEventListener("click", () =>{
-         (+UseSignBit.value && input.value.includes(".") || input.value === "-0")
+         (      +UseSignBit.value && input.value.includes(".") || input.value.includes("-0") || input.value.includes(".") && !+SelectTypeNumber.value || input.value.includes("-") && +UseSignBit.value)
                 ? document.querySelector(".result").innerHTML = "Invalid number entered!!!"//out error
                 : PrepareAndShowResult()
         })        
     
         function PrepareAndShowResult(){
+
          (+SelectSystem.value)
             ? (number._BitsSystem_= 64, number._fraction_ = 52, number._maxCommaInteger_= 1023, number._maxIntegerSystem_ = 18446744073709551616n)
             : (number._BitsSystem_= 32, number._fraction_ = 23, number._maxCommaInteger_= 127, number._maxIntegerSystem_ = 4294967296n);      
 
             document.querySelector(".outResult").innerHTML = switchFunctionCall();
 
-            if(number.warning !== undefined){//Show warning about overflow/underflow 
+            //Show warning about overflow/underflow     
+            if(number.warning !== undefined){
                 document.querySelector(".warningInfo").innerHTML = `WARNING : occurred ${number.warning}!!!`;
                 setTimeout(()=>{
                     document.querySelector(".warningInfo").innerHTML = "";
