@@ -1,0 +1,226 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="Utf-8">
+<title>Convert systems colors</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+   <div class="ui">
+      <div class="about_system">
+        <h1>The algorithm converts color between color systems. Such as: Hex, RGB (statnard RGB / sRGB), HSL, HWB, HSV / HSB, XYZ, CMY, CMYK</h1>
+      </div>
+          <div class="switch">
+              <label for="ColorSystems">Conversion with</label>
+
+                <select class="ColorSystems" name="ColorSystems">
+
+                  <optgroup  label="HEX( 000000 - FFFFFF )">
+                    <option name="hex_rgb"  value="0">Hex to RGB</option>
+                    <option name="hex_hsl"  value="1">Hex to HSL</option>
+                    <option name="hex_hwb"  value="2">Hex to HWB</option>
+                    <option name="hex_hsv/hsb" value="3">Hex to HSV/HSB</option>
+                    <option name="hex_xyz" value="4">Hex to XYZ</option>
+                    <option name="hex_cmy" value="5">Hex to CMY</option>
+                    <option name="hex_cmyk" value="6">Hex to CMYK</option>
+                  </optgroup>
+
+                  
+                  <optgroup label="RGB( 0 - 255, 0 - 255, 0 - 255 )">
+                    <option name="rgb_hex" value="7">RGB to Hex</option>
+                    <option name="rgb_hsl" value="8">RGB to HSL</option>
+                    <option name="rgb_hwb" value="9">RGB to HWB</option>
+                    <option name="rgb_hsv/hsb" value="10">RGB to HSV/HSB</option>
+                    <option name="rgb_xyz" value="11">RGB to XYZ</option>
+                    <option name="rgb_cmy" value="12">RGB to CMY</option>
+                    <option name="rgb_cmyk" value="13">RGB to CMYK</option>
+                  </optgroup>
+
+                  <optgroup label="HSL( 0 - 360°, 0 - 100%, 0 - 100% )">
+                    <option name="hsl_hex" value="14">HSL to Hex</option>
+                    <option name="hsl_rgb" value="15">HSL to RGB</option>
+                    <option name="hsl_hwb" value="16">HSL to HWB</option>
+                    <option name="hsl_hsv/hsb" value="17">HSL to HSV/HSB</option>
+                    <option name="hsl_xyz" value="18">HSL to XYZ</option>
+                    <option name="hsl_cmy" value="19">HSL to CMY</option>
+                    <option name="hsl_cmyk" value="20">HSL to CMYK</option>
+                  </optgroup>
+
+                  
+                  <optgroup label="HWB( 0 - 360°, 0 - 100%, 0 - 100% )">
+                    <option name="hwb_hex" value="21">HWB to Hex</option>
+                    <option name="hwb_rgb" value="22">HWB to RGB</option>
+                    <option name="hwb_hsl" value="23">HWB to HSL</option>
+                    <option name="hwb_hsv/hsb" value="24">HWB to HSV/HSB</option>
+                    <option name="hwb_xyz" value="25">HWB to XYZ</option>
+                    <option name="hwb_cmy" value="26">HWB to CMY</option>
+                    <option name="hwb_cmyk" value="27">HWB to CMYK</option>
+                  </optgroup>
+
+                  <optgroup label="HSV/HSB( 0 - 360°, 0 - 100%, 0 - 100% )">
+                    <option name="hsb/hsv_hex" value="28">HSV/HSB to Hex</option>
+                    <option name="hsb/hsv_rgb" value="29">HSV/HSB to RGB</option>
+                    <option name="hsb/hsv_hsl" value="30">HSV/HSB to HSL</option>
+                    <option name="hsb/hsv_hwb" value="31">HSV/HSB to HWB</option>
+                    <option name="hsb/hsv_xyz" value="32">HSV/HSB to XYZ</option>
+                    <option name="hsb/hsv_cmy" value="33">HSV/HSB to CMY</option>
+                    <option name="hsb/hsv_cmyk"value="34">HSV/HSB to CMYK</option>
+                  </optgroup>
+
+                  <optgroup label="XYZ( 0 - 150, 0 - 100, 0 - 150 )">
+                    <option name="xyz_hex" value="35">XYZ to Hex</option>
+                    <option name="xyz_rgb" value="36">XYZ to RGB</option>
+                    <option name="xyz_hsl" value="37">XYZ to HSL</option>
+                    <option name="xyz_hwb" value="38">XYZ to HWB</option>
+                    <option name="xyz_hsv/hsb" value="39">XYZ to HSV/HSB</option>
+                    <option name="xyz_cmy" value="40">XYZ to CMY</option>
+                    <option name="xyz_cmyk" value="41">XYZ to CMYK</option>
+                  </optgroup>
+
+                  <optgroup label="CMY( 0 - 100%, 0 - 100%, 0 - 100% )">
+                    <option name="cmy_hex" value="42">CMY to Hex</option>
+                    <option name="cmy_rgb" value="43">CMY to RGB</option>  
+                    <option name="cmy_hsl" value="44">CMY to HSL</option>  
+                    <option name="cmy_hwb" value="45">CMY to HWB</option>  
+                    <option name="cmy_hsv/hsb" value="46">CMY to HSV/HSB</option>  
+                    <option name="cmy_xyz" value="47">CMY to XYZ</option>
+                    <option name="cmy_cmyk" value="48">CMY to CMYK</option>    
+                  </optgroup>
+
+                  <optgroup label="CMYK( 0 - 100%, 0 - 100%, 0 - 100%, 0 - 100% )">
+                    <option name="cmyk_hex" value="49">CMYK to Hex</option>
+                    <option name="cmyk_rgb" value="50">CMYK to RGB</option>
+                    <option name="cmyk_hsl" value="51">CMYK to HSL</option>
+                    <option name="cmyk_hwb" value="52">CMYK to HWB</option>
+                    <option name="cmyk_xyz" value="53">CMYK to XYZ</option>
+                    <option name="cmyk_cmy" value="54">CMYK to CMY</option>
+                    <option name="cmyk_hsv/hsb" value="55">CMYK to HSV/HSB</option>
+                  </optgroup>
+                </select>  	
+          </div>
+
+          <div class="user_input">
+              <input class="input" type="text" value="" />
+              <input class="conversion" type="button" value="Сonversion"/>			
+          </div>
+
+          <div class="show">
+            <div class="example">
+              <b>Please, use symbol "," before typing next number. If you selected conversion with Hex to ... or back , didn't use any symbol "," between chars</b>
+              <p>Conversion with RGB to Hex => input - 120,255,13 => result -   78FF0D</p>
+              <p>Conversion with Hex to RGB => input -   66FF78   => result - 102,255,120</p>
+            </div>
+
+            <div class="result">
+                <p class="out"></p>
+            </div>
+          </div>
+   </div>	
+</body>
+<script>
+  let swither = document.querySelector(".ColorSystems"),
+      inp     = document.querySelector(".input"),
+      str,
+      AllFunctions,
+      element;
+
+      //If don't wait full load page have a error : "NameFunction is not defined" 
+      window.onload = ()=>{
+
+        AllFunctions = [ HexToRGB,HexToHSL,HexToHWB,HexToHSV,HexToXYZ,HexToCMY,HexToCMYK,
+                         RGBToHex,RGBToHSL,RGBToHWB,RGBToHSV,RGBToXYZ,RGBToCMY,RGBToCMYK,
+                         HSLToHex,HSLToRGB,HSLToHWB,HSLToHSV,HSLToXYZ,HSLToCMY,HSLToCMYK,
+                         HWBToHex,HWBToRGB,HWBToHSL,HWBToHSV,HWBToXYZ,HWBToCMY,HWBToCMYK,
+                         HSVToHex,HSVToRGB,HSVToHSL,HSVToHWB,HSVToXYZ,HSVToCMY,HSVToCMYK,
+                         XYZToHex,XYZToRGB,XYZToHSL,XYZToHWB,XYZToHSV,XYZToCMY,XYZToCMYK,
+                         CMYToHex,CMYToRGB,CMYToHSL,CMYToHWB,CMYToHSV,CMYToXYZ,CMYToCMYK,
+                         CMYKToHex,CMYKToRGB,CMYKToHSL,CMYKToHWB,CMYKToXYZ,CMYKToCMY,CMYKToHSV ];
+
+
+        document.querySelector(".conversion").addEventListener("click",()=>{
+
+          (+swither.value <= 6)//fix bug HEX .If input ff, need convert to FF 
+                  ? str = inp.value.toUpperCase().split(",")
+                  : str = inp.value.split(",");
+
+            document.querySelector(".out").innerHTML =  InputStringValidation();
+          })
+
+          function InputStringValidation(){
+            //if str empty or length < 3 and selected function != Hex to ***
+            return ( str == "" || str.length < 3 && +swither.value > 6 ) ? "Error typing. Please, look example!!!" : ShowUserAllInformation();  
+          }
+
+          function ShowUserAllInformation(){
+            element = document.querySelector(".switch select")[+swither.value].getAttribute("name");
+
+            return `input (${element.slice(0,element.indexOf("_")).toUpperCase()}): ${str} <br> output (${element.slice(element.indexOf("_")+1,element.length).toUpperCase()}) : ${FunctionsSwitch()}`;
+          }
+
+          function FunctionsSwitch(){
+            return AllFunctions[+swither.value].apply(str);  
+          }
+      }
+
+    console.log(`%c More information about work HWB to RGB (RGB to HWB) look here : http://alvyray.com/Papers/CG/HWB_JGTv208.pdf \n and here : https://jsfiddle.net/seamusleahy/12eL2qse/, \n other color system : https://www.easyrgb.com/en/math.php`,
+                 `font-size:20px; color:#26ce26; `
+                )  
+
+</script>
+<script defer src="scripts/CMY/CMYToCMYK.js"></script>
+<script defer src="scripts/CMY/CMYToHex.js"></script>
+<script defer src="scripts/CMY/CMYToHSL.js"></script>
+<script defer src="scripts/CMY/CMYToHSV.js"></script>
+<script defer src="scripts/CMY/CMYToHWB.js"></script>
+<script defer src="scripts/CMY/CMYToRGB.js"></script>
+<script defer src="scripts/CMY/CMYToXYZ.js"></script>
+<script defer src="scripts/CMYK/CMYKToCMY.js"></script>
+<script defer src="scripts/CMYK/CMYKToHex.js"></script>
+<script defer src="scripts/CMYK/CMYKToHSL.js"></script>
+<script defer src="scripts/CMYK/CMYKToHSV.js"></script>
+<script defer src="scripts/CMYK/CMYKToHWB.js"></script>
+<script defer src="scripts/CMYK/CMYKToRGB.js"></script>
+<script defer src="scripts/CMYK/CMYKToXYZ.js"></script>
+<script defer src="scripts/Hex/HexToCMY.js"></script>
+<script defer src="scripts/Hex/HexToCMYK.js"></script>
+<script defer src="scripts/Hex/HexToHSL.js"></script>
+<script defer src="scripts/Hex/HexToHSV.js"></script>
+<script defer src="scripts/Hex/HexToHWB.js"></script>
+<script defer src="scripts/Hex/HexToRGB.js"></script>
+<script defer src="scripts/Hex/HexToXYZ.js"></script>
+<script defer src="scripts/HSL/HSLToCMY.js"></script>
+<script defer src="scripts/HSL/HSLToCMYK.js"></script>
+<script defer src="scripts/HSL/HSLToHex.js"></script>
+<script defer src="scripts/HSL/HSLToHSV.js"></script>
+<script defer src="scripts/HSL/HSLToHWB.js"></script>
+<script defer src="scripts/HSL/HSLToRGB.js"></script>
+<script defer src="scripts/HSL/HSLToXYZ.js"></script>
+<script defer src="scripts/HSV/HSVToCMY.js"></script>
+<script defer src="scripts/HSV/HSVToCMYK.js"></script>
+<script defer src="scripts/HSV/HSVToHex.js"></script>
+<script defer src="scripts/HSV/HSVToHSL.js"></script>
+<script defer src="scripts/HSV/HSVToHWB.js"></script>
+<script defer src="scripts/HSV/HSVToRGB.js"></script>
+<script defer src="scripts/HSV/HSVToXYZ.js"></script>
+<script defer src="scripts/HWB/HWBToCMY.js"></script>
+<script defer src="scripts/HWB/HWBToCMYK.js"></script>
+<script defer src="scripts/HWB/HWBToHex.js"></script>
+<script defer src="scripts/HWB/HWBToHSL.js"></script>
+<script defer src="scripts/HWB/HWBToHSV.js"></script>
+<script defer src="scripts/HWB/HWBToRGB.js"></script>
+<script defer src="scripts/HWB/HWBToXYZ.js"></script>
+<script defer src="scripts/RGB/RGBToCMY.js"></script>
+<script defer src="scripts/RGB/RGBToCMYK.js"></script>
+<script defer src="scripts/RGB/RGBToHex.js"></script>
+<script defer src="scripts/RGB/RGBToHSL.js"></script>
+<script defer src="scripts/RGB/RGBToHSV.js"></script>
+<script defer src="scripts/RGB/RGBToHWB.js"></script>
+<script defer src="scripts/RGB/RGBToXYZ.js"></script>
+<script defer src="scripts/XYZ/XYZToCMY.js"></script>
+<script defer src="scripts/XYZ/XYZToCMYK.js"></script>
+<script defer src="scripts/XYZ/XYZToHex.js"></script>
+<script defer src="scripts/XYZ/XYZToHSL.js"></script>
+<script defer src="scripts/XYZ/XYZToHSV.js"></script>
+<script defer src="scripts/XYZ/XYZToHWB.js"></script>
+<script defer src="scripts/XYZ/XYZToRGB.js"></script>
+</html>

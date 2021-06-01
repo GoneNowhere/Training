@@ -1,0 +1,40 @@
+.ui{
+    text-align: center;
+    display: block;
+    margin: 10% auto;
+}
+.switch{
+    font-size: 20px;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+}
+.ColorSystems{
+    width: 323px;
+    height: 25px;
+}
+.input{
+    padding: 5px 8px;
+    width: 350px;
+    height: 20px;
+    font-size: 18px;
+}
+.conversion{
+    padding: 5.7px 0 5.5px 0;
+    width: 140px;
+    cursor: pointer;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+.example{
+    margin: 15px auto;
+}
+.example > b{
+    font-size: 20px;
+}
+.example > p{
+    margin: 5px auto;
+}
+.result{
+    font-size: 30px;
+    font-weight: 900;
+}
